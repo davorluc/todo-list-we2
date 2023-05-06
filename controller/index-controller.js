@@ -2,11 +2,39 @@ import {todoService} from "../services/todoService.js";
 
 export class IndexController {
     showIndex(req, res) {
-        res.type('text/html');
-        res.write("<html>");
-        res.write("<p>Willkommen! Zu der besten Pizzeria auf der Welt!</p>");
-        res.write("<form action='/todos' method='get'><input type='submit' value='Create a Todo'></form>");
-        res.end("</html>");
+        console.log("showIndex start");
+        todoService.all(function (err, todo) {
+            console.log("first line");
+            res.type('text/html');
+            res.write("<html>");
+            res.write("<p>Willkommen! Zu der besten Pizzeria auf der Welt!</p>");
+            res.write("<form action='/todos' method='get'><input type='submit' value='Create a Todo'></form>");
+            res.write("<table>");
+            res.write("<tr>");
+            res.write("<th>todoTitle</th>");
+            res.write("<th>dueDate</th>");
+            res.write("<th>importance</th>");
+            res.write("<th>state</th>");
+            res.write("<th>description</th>");
+            res.write("</tr>");
+            res.write("<tr>");
+            res.write("<td>" + todo[0].todoTitle + "</td>");
+            res.write("<td>" + todo[0].dueDate + "</td>");
+            res.write("<td>" + todo[0].importance + "</td>");
+            res.write("<td>" + todo[0].state + "</td>");
+            res.write("<td>" + todo[0].description + "</td>");
+            res.write("</tr>");
+            res.write("<tr>");
+            res.write("<td>" + todo[1].todoTitle + "</td>");
+            res.write("<td>" + todo[1].dueDate + "</td>");
+            res.write("<td>" + todo[1].importance + "</td>");
+            res.write("<td>" + todo[1].state + "</td>");
+            res.write("<td>" + todo[1].description + "</td>");
+            res.write("</tr>");
+            res.write("</table>");
+            res.end("</html>");
+            console.log("last line");
+        });
     };
 
     createTodo(req, res) {
