@@ -4,47 +4,54 @@ export class IndexController {
     showIndex(req, res) {
         res.type('text/html');
         res.write("<html>");
-        res.write("<p>Willkommen! Zu der besten Pizzaria auf der Welt!</p>");
-        res.write("<img src='/images/pizza.jpg'>");
-        res.write("<form action='/orders' method='get'><input type='submit' value='Order a Pizza'></form>");
+        res.write("<p>Willkommen! Zu der besten Pizzeria auf der Welt!</p>");
+        res.write("<form action='/todos' method='get'><input type='submit' value='Create a Todo'></form>");
         res.end("</html>");
     };
 
-    createOrder(req, res) {
+    createTodo(req, res) {
         res.type('text/html');
         res.write("<html>");
-        res.write("<p>Was fuer eine Pizze haetten Sie den gerne?</p>");
-        res.write("<form action='/orders' method='post'><input name='name' placeholder='pizza name'><input type='submit' value='Order a Pizza'></form>");
+        res.write("<p>Enter the next todo?</p>");
+        res.write("<form action='/todos' method='post'>");
+        res.write("<input name='todoTitle' placeholder='Title'>")  // Title for the entry
+        res.write("<input name='importance' type='number' min='1' max='5' placeholder='importance'>")   // importance categorisation for the entry
+        res.write("<input name='dueDate' type='date'>");    // due date of the entry
+        res.write("<input name='description' placeholder='description'>");  // further description of the entry
+        res.write("<input type='submit' value='Create a Todo'>")    // submit button
+        res.write("</form>")
         res.end("</html>");
     };
 
-    createPizza(req, res) {
+    createTodoEntry(req, res) {
         console.log("createPizza start");
-        todoService.add(req.body.name, "unkown", function (err, order) {
+        todoService.add(req.body.todoTitle, "unknown", req.body.dueDate, req.body.importance, req.body.description, function (err, todo) {
             console.log("      callback start");
 
             res.type('text/html');
             res.write("<html>");
             res.write("<p>Erfolgreich!</p>");
-            res.write("<p>Ihre order: " + order.pizzaName + "</p>");
-            res.write("<p>Ihre Nummer: " + order._id + " !</p>");
-            res.write("<p><a href='/orders/" + order._id + "/'>Zeige order an</a></p>");
+            res.write("<p>Titel: " + todo.todoTitle + "</p>");
+            res.write("<p>Beschreibung " + todo.description + "</p>");
+            res.write("<p>Zu erledigen bis: " + todo.dueDate + "</p>");
+            res.write("<p>Ihre Nummer: " + todo._id + " !</p>");
+            res.write("<p><a href='/todos/" + todo._id + "/'>Zeige Todo an</a></p>");
             res.end("</html>");
 
             console.log("      callback end");
         });
-        console.log("createPizza end");
+        console.log("createTodoEntry end");
     };
 
-    showOrder(req, res) {
-        todoService.get(req.params.id, function (err, order) {
+    showTodo(req, res) {
+        todoService.get(req.params.id, function (err, todo) {
             res.type('text/html');
             res.write("<html>");
-            if (order) {
-                res.write("<p>Order-Number: " + order._id + "</p>");
-                res.write("<p>Status: " + order.state + "</p>");
-                if (order.state === "OK") {
-                    res.write("<form action='/orders/" + order._id + "' method='post'><input type='hidden' name='_method'  value='delete'><input type='submit' value='Delete order'></form>");
+            if (todo) {
+                res.write("<p>Order-Number: " + todo._id + "</p>");
+                res.write("<p>Status: " + todo.state + "</p>");
+                if (todo.state === "OK") {
+                    res.write("<form action='/todos/" + todo._id + "' method='post'><input type='hidden' name='_method'  value='delete'><input type='submit' value='Delete Todo'></form>");
                 }
             }
             res.write("<form action='/' method='get'><input type='submit' value='Zurueck zum start'></form>");
@@ -52,12 +59,12 @@ export class IndexController {
         });
     };
 
-    deleteOrder(req, res) {
-        todoService.delete(req.params.id, function (err, order) {
+    deleteTodo(req, res) {
+        todoService.delete(req.params.id, function (err, todo) {
             res.type('text/html');
             res.write("<html>");
-            res.write("<p>Order-Number: " + order._id + "</p>");
-            res.write("<p>Status: " + order.state + "</p>");
+            res.write("<p>Order-Number: " + todo._id + "</p>");
+            res.write("<p>Status: " + todo.state + "</p>");
             res.write("<form action='/' method='get'><input type='submit' value='Zurueck zum start'></form>");
             res.end("</html>");
         });

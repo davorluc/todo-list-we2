@@ -4,9 +4,9 @@ const router = express.Router();
 import {indexController} from '../controller/index-controller.js';
 
 router.get("/", indexController.showIndex);
-router.get("/orders", indexController.createOrder);
-router.post("/orders", indexController.createPizza);
-router.get("/orders/:id/", indexController.showOrder);
-router.delete("/orders/:id/", indexController.deleteOrder);
+router.get("/todos", indexController.createTodo);
+router.post("/todos", indexController.createTodoEntry);
+router.get("/todos/:id/", indexController.showTodo);
+router.delete("/todos/:id/", indexController.deleteTodo);
 
 export const indexRoutes = router;

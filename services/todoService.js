@@ -1,11 +1,14 @@
 import Datastore from '@seald-io/nedb';
 const db = new Datastore({filename: './data/order.db', autoload: true});
 
-class Order {
-    constructor(todoName, orderedBy) {
+class Entry {
+    constructor(todoTitle, orderedBy, dueDate, importance, description) {
         this.orderedBy = orderedBy;
-        this.todoName = todoName;
-        this.orderDate = new Date();
+        this.todoTitle = todoTitle;
+        this.dueDate = dueDate;
+        this.creationDate = new Date();
+        this.importance = importance;
+        this.description = description;
         this.state = "OK";
     }
 }
@@ -16,10 +19,10 @@ class TodoService {
 
     }
 
-    add(todoName, orderedBy, callback) {
+    add(todoTitle, orderedBy, dueDate, importance, description, callback) {
         console.log("  publicAddOrder start");
-        let order = new Order(todoName, orderedBy);
-        db.insert(order, function (err, newDoc) {
+        let entry = new Entry(todoTitle, orderedBy, dueDate, importance, description);
+        db.insert(entry, function (err, newDoc) {
             console.log("    insert");
             if (callback) {
                 callback(err, newDoc);
