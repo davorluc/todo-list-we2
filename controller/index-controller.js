@@ -24,6 +24,7 @@ export class IndexController {
                     res.write("<td>" + todo[i].importance + "</td>");
                     res.write("<td>" + todo[i].state + "</td>");
                     res.write("<td>" + todo[i].description + "</td>");
+                    res.write("<td><a href='/todos/" + todo[i]._id + "/'>Zeige Todo an</td>");
                     res.write("</tr>");
                 }
                 res.write("</table>");

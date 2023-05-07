@@ -6,7 +6,6 @@ class Entry {
         this.orderedBy = orderedBy;
         this.todoTitle = todoTitle;
         this.dueDate = dueDate;
-        this.creationDate = new Date();
         this.importance = importance;
         this.description = description;
         this.state = "OK";
