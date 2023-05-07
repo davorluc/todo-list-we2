@@ -1,39 +1,34 @@
 import {todoService} from "../services/todoService.js";
 
 export class IndexController {
+
     showIndex(req, res) {
         console.log("showIndex start");
         todoService.all(function (err, todo) {
-            console.log("first line");
-            res.type('text/html');
-            res.write("<html>");
-            res.write("<p>Willkommen! Zu der besten Pizzeria auf der Welt!</p>");
-            res.write("<form action='/todos' method='get'><input type='submit' value='Create a Todo'></form>");
-            res.write("<table>");
-            res.write("<tr>");
-            res.write("<th>todoTitle</th>");
-            res.write("<th>dueDate</th>");
-            res.write("<th>importance</th>");
-            res.write("<th>state</th>");
-            res.write("<th>description</th>");
-            res.write("</tr>");
-            res.write("<tr>");
-            res.write("<td>" + todo[0].todoTitle + "</td>");
-            res.write("<td>" + todo[0].dueDate + "</td>");
-            res.write("<td>" + todo[0].importance + "</td>");
-            res.write("<td>" + todo[0].state + "</td>");
-            res.write("<td>" + todo[0].description + "</td>");
-            res.write("</tr>");
-            res.write("<tr>");
-            res.write("<td>" + todo[1].todoTitle + "</td>");
-            res.write("<td>" + todo[1].dueDate + "</td>");
-            res.write("<td>" + todo[1].importance + "</td>");
-            res.write("<td>" + todo[1].state + "</td>");
-            res.write("<td>" + todo[1].description + "</td>");
-            res.write("</tr>");
-            res.write("</table>");
-            res.end("</html>");
-            console.log("last line");
+            todoService.count(function (err, dbSize) {
+                res.type('text/html');
+                res.write("<html>");
+                res.write("<form action='/todos' method='get'><input type='submit' value='Create a Todo'></form>");
+                res.write("<table>");
+                res.write("<tr>");
+                res.write("<th>todoTitle</th>");
+                res.write("<th>dueDate</th>");
+                res.write("<th>importance</th>");
+                res.write("<th>state</th>");
+                res.write("<th>description</th>");
+                res.write("</tr>");
+                for (let i = 0; i < dbSize; i++) {
+                    res.write("<tr>");
+                    res.write("<td>" + todo[i].todoTitle + "</td>");
+                    res.write("<td>" + todo[i].dueDate + "</td>");
+                    res.write("<td>" + todo[i].importance + "</td>");
+                    res.write("<td>" + todo[i].state + "</td>");
+                    res.write("<td>" + todo[i].description + "</td>");
+                    res.write("</tr>");
+                }
+                res.write("</table>");
+                res.end("</html>");
+            });
         });
     };
 
@@ -42,7 +37,7 @@ export class IndexController {
         res.write("<html>");
         res.write("<p>Enter the next todo?</p>");
         res.write("<form action='/todos' method='post'>");
-        res.write("<input name='todoTitle' placeholder='Title'>")  // Title for the entry
+        res.write("<input name='todoTitle' placeholder='Title' required>")  // Title for the entry
         res.write("<input name='importance' type='number' min='1' max='5' placeholder='importance'>")   // importance categorisation for the entry
         res.write("<input name='dueDate' type='date'>");    // due date of the entry
         res.write("<input name='description' placeholder='description'>");  // further description of the entry

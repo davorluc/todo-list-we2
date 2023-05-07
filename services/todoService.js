@@ -48,6 +48,12 @@ class TodoService {
             callback(err, docs);
         });
     }
+
+    count(callback) {
+        db.count({}, function (err, docs) {
+            callback(err, docs);
+        });
+    }
 }
 
 export const todoService = new TodoService();
