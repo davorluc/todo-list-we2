@@ -53,6 +53,21 @@ class TodoService {
             callback(err, docs);
         });
     }
+
+    edit(id, todoTitle, dueDate, importance, description, callback) {
+        db.update({_id: id}, {$set: {"todoTitle": todoTitle}}, {}, function (err, docs) {
+            callback(err, docs);
+        });
+        db.update({_id: id}, {$set: {"dueDate": dueDate}}, {}, function (err, docs) {
+            callback(err,docs);
+        });
+        db.update({_id: id}, {$set: {"importance": importance}}, {}, function (err, docs) {
+            callback(err, docs);
+        });
+        db.update({_id: id}, {$set: {"description": description}}, {}, function (err, docs) {
+            callback(err, docs);
+        });
+    }
 }
 
 export const todoService = new TodoService();

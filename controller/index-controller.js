@@ -24,7 +24,7 @@ export class IndexController {
                     res.write("<td>" + todo[i].importance + "</td>");
                     res.write("<td>" + todo[i].state + "</td>");
                     res.write("<td>" + todo[i].description + "</td>");
-                    res.write("<td><a href='/todos/" + todo[i]._id + "/'>Zeige Todo an</td>");
+                    res.write("<td><form action='/todos/" + todo[i]._id + "/'><input type='submit' value='Zeige Todo an'></form></td>");
                     res.write("</tr>");
                 }
                 res.write("</table>");
@@ -72,8 +72,15 @@ export class IndexController {
             res.type('text/html');
             res.write("<html>");
             if (todo) {
-                res.write("<p>Order-Number: " + todo._id + "</p>");
-                res.write("<p>Status: " + todo.state + "</p>");
+                // res.write("<p>Order-Number: " + todo._id + "</p>");
+                // res.write("<p>Status: " + todo.state + "</p>");
+                res.write("<form action='/todos' method='post'>");
+                res.write("<input name='todoTitle' placeholder='Title' required value=" + todo.todoTitle + ">");  // Title for the entry
+                res.write("<input name='importance' type='number' min='1' max='5' placeholder='importance' value=" + todo.importance + ">");   // importance categorisation for the entry
+                res.write("<input name='dueDate' type='date' value=" + todo.dueDate + ">");    // due date of the entry
+                res.write("<input name='description' placeholder='description' value=" + todo.description + ">");  // further description of the entry
+                res.write("<input type='submit' value='Create a Todo'>")    // submit button
+                res.write("</form>")
                 if (todo.state === "OK") {
                     res.write("<form action='/todos/" + todo._id + "' method='post'><input type='hidden' name='_method'  value='delete'><input type='submit' value='Delete Todo'></form>");
                 }
