@@ -34,6 +34,7 @@ class TodoService {
         db.update({_id: id}, {$set: {"state": "DELETED"}}, {returnUpdatedDocs: true}, function (err, numDocs, doc) {
             callback(err, doc);
         });
+        db.remove({_id: id}, {});
     }
 
     get(id, callback) {
@@ -59,7 +60,7 @@ class TodoService {
             callback(err, docs);
         });
         db.update({_id: id}, {$set: {"dueDate": dueDate}}, {}, function (err, docs) {
-            callback(err,docs);
+            callback(err, docs);
         });
         db.update({_id: id}, {$set: {"importance": importance}}, {}, function (err, docs) {
             callback(err, docs);

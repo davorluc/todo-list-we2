@@ -48,7 +48,7 @@ export class IndexController {
     };
 
     createTodoEntry(req, res) {
-        console.log("createPizza start");
+        console.log("createTodoEntry start");
         todoService.add(req.body.todoTitle, "unknown", req.body.dueDate, req.body.importance, req.body.description, function (err, todo) {
             console.log("      callback start");
 
@@ -59,7 +59,7 @@ export class IndexController {
             res.write("<p>Beschreibung " + todo.description + "</p>");
             res.write("<p>Zu erledigen bis: " + todo.dueDate + "</p>");
             res.write("<p>Ihre Nummer: " + todo._id + " !</p>");
-            res.write("<p><a href='/todos/" + todo._id + "/'>Zeige Todo an</a></p>");
+            res.write("<form action='/' method='get'><input type='submit' value='Zurueck zum start'></form>");
             res.end("</html>");
 
             console.log("      callback end");
@@ -67,14 +67,14 @@ export class IndexController {
         console.log("createTodoEntry end");
     };
 
-    showTodo(req, res) {
+    editTodo(req, res) {
         todoService.get(req.params.id, function (err, todo) {
             res.type('text/html');
             res.write("<html>");
             if (todo) {
                 // res.write("<p>Order-Number: " + todo._id + "</p>");
                 // res.write("<p>Status: " + todo.state + "</p>");
-                res.write("<form action='/todos' method='post'>");
+                res.write("<form action='/todos" + todo._id + "' method='post'>");
                 res.write("<input name='todoTitle' placeholder='Title' required value=" + todo.todoTitle + ">");  // Title for the entry
                 res.write("<input name='importance' type='number' min='1' max='5' placeholder='importance' value=" + todo.importance + ">");   // importance categorisation for the entry
                 res.write("<input name='dueDate' type='date' value=" + todo.dueDate + ">");    // due date of the entry
@@ -94,8 +94,7 @@ export class IndexController {
         todoService.delete(req.params.id, function (err, todo) {
             res.type('text/html');
             res.write("<html>");
-            res.write("<p>Order-Number: " + todo._id + "</p>");
-            res.write("<p>Status: " + todo.state + "</p>");
+            res.write("<p>" + todo.todoTitle + " wurde gelöscht</p>");
             res.write("<form action='/' method='get'><input type='submit' value='Zurueck zum start'></form>");
             res.end("</html>");
         });

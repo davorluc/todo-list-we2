@@ -6,7 +6,7 @@ import {indexController} from '../controller/index-controller.js';
 router.get("/", indexController.showIndex);
 router.get("/todos", indexController.createTodo);
 router.post("/todos", indexController.createTodoEntry);
-router.get("/todos/:id/", indexController.showTodo);
-router.delete("/todos/:id/", indexController.deleteTodo);
+router.get("/todos/:id/", indexController.editTodo);
+router.post("/todos/:id/", indexController.deleteTodo);
 
 export const indexRoutes = router;
