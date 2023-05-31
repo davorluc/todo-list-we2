@@ -1,0 +1,10 @@
+<form action="/todos" method="post">
+    <label>Title <input name="todoTitle" required></label>
+    <label>Importance <input name="importance" type="number" min="1" max="5"></label>
+    <label>Due Date <input name="dueDate" type="date"></label>
+    <label> Completed<input name="completed" type="checkbox" value="true"></label>
+    <textarea name="description" rows="5" cols="50"></textarea>
+    <input type="submit" value="Create a Todo">
+    <input name="submitOverview" type="submit" value="Submit and Return">
+    <a href="/"><button>Overview</button></a>
+</form>
