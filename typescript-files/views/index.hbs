@@ -4,7 +4,7 @@
     </form>
 
     <form action="/" method="get">
-        <input type="hidden" name="darkmode" value={{userSettings.darkmode}}>
+        <input type="hidden" name="styleToggle" value={{userSettings.styleToggle}}>
         <input type="submit" value="Toggle Style" aria-label="Toggle style">
     </form>
 </div>
@@ -46,7 +46,7 @@
     {{#each result.noteList}}
         <tr>
             <td>{{this.dueDate}}</td>
-            <td><a href="/note/{{this._id}}/">{{this.title}}</a><br>
+            <td><a href="/note/{{this._id}}/">{{this.todoTitle}}</a><br>
                 <p>{{this.description}}</p>
             </td>
             <td><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></td>
