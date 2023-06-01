@@ -1,5 +1,5 @@
 <div class="createAndToggle">
-    <form action="note/" method="get">
+    <form action="todo/" method="get">
         <input type="submit" value="Create new note">
     </form>
 
@@ -11,26 +11,26 @@
 
 <div class="filter">
     <form action="/" method="get">
-        <input type="hidden" class="btn btn-outline-primary" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
-        <input type="hidden" class="btn btn-outline-primary" name="orderBy"  value="title">
-        <input type="submit" class="btn btn-outline-primary" value="Name" aria-label="sort by direction">
+        <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
+        <input type="hidden" name="orderBy"  value="title">
+        <input type="submit" value="Name" aria-label="sort by direction">
     </form>
 
     <form action="/" method="get">
-        <input type="hidden" class="btn btn-outline-primary" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
-        <input type="hidden" class="btn btn-outline-primary" name="orderBy"  value="dueDate">
-        <input type="submit" class="btn btn-outline-primary" value="By Due Date" aria-label="sort by due Date">
+        <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
+        <input type="hidden" name="orderBy"  value="dueDate">
+        <input type="submit" value="By Due Date" aria-label="sort by due Date">
     </form>
 
     <form action="/" method="get">
-        <input type="hidden" class="btn btn-outline-primary" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
-        <input type="hidden" class="btn btn-outline-primary" name="orderBy"  value="importance">
-        <input type="submit" class="btn btn-outline-primary" value="By Rating" aria-label="sort by Rating">
+        <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
+        <input type="hidden" name="orderBy"  value="importance">
+        <input type="submit" value="By Rating" aria-label="sort by Rating">
     </form>
 
     <form action="/" method="get">
-        <input type="hidden" class="btn btn-outline-primary" name="hideCompleted" value={{userSettings.showCompleted}}>
-        <input type="submit" class="btn btn-outline-primary" value="Filter Completed" aria-label="filter completed">
+        <input type="hidden" name="hideCompleted" value={{userSettings.showCompleted}}>
+        <input type="submit" value="Filter Completed" aria-label="filter completed">
     </form>
 </div>
 
@@ -43,7 +43,7 @@
         <th>description</th>
     </tr>
 
-    {{#each result.noteList}}
+    {{#each result.todoList}}
         <tr>
             <td>{{this.dueDate}}</td>
             <td><a href="/note/{{this._id}}/">{{this.todoTitle}}</a><br>
@@ -54,7 +54,7 @@
         </tr>
     {{/each}}
 
-    {{#unless result.noteList}}
+    {{#unless result.todoList}}
         <tr>
             <td>Keine Einträge gefunden</td>
             <td></td>

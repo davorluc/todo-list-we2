@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="To do Application">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes</title>
+    {{#if userSettings.darkmode}}
+        <style>
+            :root {
+                --body-bg: #333;
+                --body-color: #f5f5f5;
+                --table-text-color: #f5f5f5;
+                --table-hover-color: #555;
+            }
+        </style>
+    {{else}}
+        <style>
+            :root {
+                --body-bg: #f5f5f5;
+                --body-color: #333;
+                --table-text-color: #333;
+                --table-hover-color: #ddd;
+            }
+        </style>
+    {{/if}}
+</head>
+<body>
+{{{body}}}
+</body>
+</html>

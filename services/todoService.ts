@@ -1,5 +1,5 @@
 import Datastore from '@seald-io/nedb'
-const db = new Datastore({filename: './data/todo.db', autoload: true});
+const db = new Datastore({filename: './data/todos.db', autoload: true});
 
 class Entry {
     constructor(

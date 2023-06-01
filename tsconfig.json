@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "ES2020", // https://github.com/wclr/ts-node-dev/issues/265
+    "target": "ESNext",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "strict":false
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
