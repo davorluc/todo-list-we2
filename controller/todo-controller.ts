@@ -3,17 +3,12 @@ import {todoService} from "../services/todoService";
 
 export class TodoController {
     renderTodos = async (req:any, res:Response) => {
-        res.render('todos', {action: 'create', result:{styleToggle: req.userSettings.styleToggle}})
+        res.render('todos', {action: '', result:{styleToggle: req.userSettings.styleToggle}})
     };
 
     showTodo = async (req:any, res:Response) => {
-        let todo = await todoService.get(req.params.id, (error, result) => {
-            if (error) {
-                res.status(500).json({error: 'An error has occured'});
-            } else {
-                res.render('todos', {todo: todo, action: 'update', result: {styleToggle: req.UserSettings.styleToggle}});
-            }
-        });
+        let todo = await todoService.get(req.params.id);
+        res.render('todos', { todo: todo, action: '', result: { styleToggle: req.UserSettings.styleToggle } });
     }
 
     createTodo = async(req:Request, res:Response) => {
@@ -22,8 +17,8 @@ export class TodoController {
             req.body.dueDate,
             req.body.importance,
             req.body.description,
-            req.body.completed)
-        req.url === '/todoOverview' ? res.redirect('/') : res.redirect(`/todo/${req.body.id}`);
+            Boolean(req.body.completed))
+        req.url === '/todoOverview' ? res.redirect('/') : res.redirect(`/todo/${newTodo._id}/`);
     }
 
     updateTodo = async(req:Request, res:Response) => {
@@ -34,7 +29,7 @@ export class TodoController {
             req.body.importance,
             req.body.description,
             req.body.completed)
-        req.url === '/updateOverview' ? res.redirect('/') : res.redirect(`/todo/${req.body.id}`);
+        req.url === '/updateOverview' ? res.redirect('/') : res.redirect(`/todo/${req.body._id}`);
     }
 }
 

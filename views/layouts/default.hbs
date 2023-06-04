@@ -6,8 +6,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=yes, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Notes</title>
-    {{#if userSettings.darkmode}}
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <title>Todo List</title>
+
+    {{#if userSettings.styleToggle}}
         <style>
             :root {
                 --body-bg: #333;

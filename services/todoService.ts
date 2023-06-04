@@ -1,5 +1,7 @@
-import Datastore from '@seald-io/nedb'
+import Datastore from 'nedb-promises';
+// @ts-ignore
 const db = new Datastore({filename: './data/todos.db', autoload: true});
+
 
 class Entry {
     constructor(
@@ -38,17 +40,16 @@ class TodoService {
         const updateEntry = new Entry(todoTitle, dueDate, importance, description, completed);
         return db.update({_id: id}, {$set: updateEntry});
     }
-
-    async get(
-        id: string,
-        callback: (error: Error | null, result: any) => void
-    ): Promise<void> {
-        db.findOne({ _id: id }, (error, result) => {
-            if (error) {
-                callback(error, null);
-            } else {
-                callback(null, result);
-            }
+    
+    async get(id: string): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+            db.findOne({ _id: id }, (error: Error | null, result: any) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(JSON.stringify(result));
+                }
+            });
         });
     }
 

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="public/stylesheets/style.css">
 <div class="createAndToggle">
     <form action="todo/" method="get">
         <input type="submit" value="Create new note">
@@ -36,21 +37,22 @@
 
 <table>
     <tr>
-        <th>todoTitle</th>
+        <th>title</th>
         <th>dueDate</th>
         <th>importance</th>
-        <th>state</th>
+        <th>completed</th>
         <th>description</th>
+        <th></th>
     </tr>
 
     {{#each result.todoList}}
         <tr>
+            <td>{{this.todoTitle}}</td>
             <td>{{this.dueDate}}</td>
-            <td><a href="/note/{{this._id}}/">{{this.todoTitle}}</a><br>
-                <p>{{this.description}}</p>
-            </td>
-            <td><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></td>
             <td>{{this.importance}}</td>
+            <td><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></td>
+            <td>{{this.description}}</td>
+            <td><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Zeige Todo an"></form></td>
         </tr>
     {{/each}}
 
