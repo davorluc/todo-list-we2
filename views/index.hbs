@@ -35,39 +35,6 @@
         </form>
     </div>
 </section>
-
-<!--
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Due Date</th>
-        <th>Importance</th>
-        <th>Status</th>
-        <th>Description</th>
-        <th></th>
-    </tr>
-
-    {{#each result.todoList}}
-        <tr>
-            <td>{{this.todoTitle}}</td>
-            <td>{{this.dueDate}}</td>
-            <td>{{this.importance}}</td>
-            <td><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></td>
-            <td>{{this.description}}</td>
-            <td><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Edit"></form></td>
-        </tr>
-    {{/each}}
-
-    {{#unless result.todoList}}
-        <tr>
-            <td>Keine Einträge gefunden</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    {{/unless}}
-</table>
--->
 <section class="cards">
     {{#each result.todoList}}
         <article>

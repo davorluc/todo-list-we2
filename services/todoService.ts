@@ -51,8 +51,7 @@ class TodoService {
     all(
         orderBy: string,
         orderDirection: number,
-        showCompleted: Boolean,
-        // callback: (err: any, todo: any) => void
+        showCompleted: Boolean
     ) {
         const query = showCompleted ? {} : {completed: false};
         return db.find(query).sort({[orderBy]: orderDirection});
