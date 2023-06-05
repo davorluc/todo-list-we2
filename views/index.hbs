@@ -1,46 +1,49 @@
-<div class="createAndToggle">
-    <form action="todo/" method="get">
-        <input type="submit" value="Create new note">
-    </form>
+<section class="top">
+    <div class="createAndToggle">
+        <form action="todo/" method="get">
+            <input type="submit" value="Create new note" class="button-54">
+        </form>
 
-    <form action="/" method="get">
-        <input type="hidden" name="styleToggle" value={{userSettings.styleToggle}}>
-        <input type="submit" value="Toggle Style" aria-label="Toggle style">
-    </form>
-</div>
+        <form action="/" method="get">
+            <input type="hidden" name="styleToggle" value={{userSettings.styleToggle}}>
+            <input type="submit" value="Toggle Style" aria-label="Toggle style" class="button-54">
+        </form>
+    </div>
 
-<div class="filter">
-    <form action="/" method="get">
-        <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
-        <input type="hidden" name="orderBy"  value="title">
-        <input type="submit" value="Name" aria-label="sort by direction">
-    </form>
+    <div class="filter">
+        <form action="/" method="get">
+            <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
+            <input type="hidden" name="orderBy"  value="todoTitle">
+            <input type="submit" value="Name" aria-label="sort by direction" class="button-54">
+        </form>
 
-    <form action="/" method="get">
-        <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
-        <input type="hidden" name="orderBy"  value="dueDate">
-        <input type="submit" value="By Due Date" aria-label="sort by due Date">
-    </form>
+        <form action="/" method="get">
+            <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
+            <input type="hidden" name="orderBy"  value="dueDate">
+            <input type="submit" value="By Due Date" aria-label="sort by due Date" class="button-54">
+        </form>
 
-    <form action="/" method="get">
-        <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
-        <input type="hidden" name="orderBy"  value="importance">
-        <input type="submit" value="By Rating" aria-label="sort by Rating">
-    </form>
+        <form action="/" method="get">
+            <input type="hidden" name="orderDirection" value={{#if_eq userSettings.orderDirection 1}}1{{else}}-1{{/if_eq}}>
+            <input type="hidden" name="orderBy"  value="importance">
+            <input type="submit" value="By Rating" aria-label="sort by Rating" class="button-54">
+        </form>
 
-    <form action="/" method="get">
-        <input type="hidden" name="hideCompleted" value={{userSettings.showCompleted}}>
-        <input type="submit" value="Filter Completed" aria-label="filter completed">
-    </form>
-</div>
+        <form action="/" method="get">
+            <input type="hidden" name="hideCompleted" value={{userSettings.showCompleted}}>
+            <input type="submit" value="Filter Completed" aria-label="filter completed" class="button-54">
+        </form>
+    </div>
+</section>
+
 
 <table>
     <tr>
-        <th>title</th>
-        <th>dueDate</th>
-        <th>importance</th>
-        <th>completed</th>
-        <th>description</th>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th>Importance</th>
+        <th>Status</th>
+        <th>Description</th>
         <th></th>
     </tr>
 
@@ -51,7 +54,7 @@
             <td>{{this.importance}}</td>
             <td><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></td>
             <td>{{this.description}}</td>
-            <td><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Zeige Todo an"></form></td>
+            <td><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Edit"></form></td>
         </tr>
     {{/each}}
 

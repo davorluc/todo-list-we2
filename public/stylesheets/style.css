@@ -1,6 +1,16 @@
+body {
+    background: var(--body-bg);
+    color: var(--body-color);
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 table {
     border-collapse: collapse;
     font-family: Tahoma, Geneva, sans-serif;
+    margin-right: auto;
+    margin-left: auto;
 }
 table td {
     padding: 15px;
@@ -20,9 +30,21 @@ table tr {
     background-color: #f9fafb;
 }
 
-body {
-    background: var(--body-bg);
-    color: var(--body-color)
+.top {
+    padding: 15px;
+}
+
+.top div {
+    padding: 10px 16px;
+    display: inline-flex;
+}
+
+.top div form {
+    padding: 0px 5px
+}
+
+.new-todo a {
+    padding: 15px;
 }
 
 .button-30 {
@@ -35,15 +57,13 @@ body {
     box-sizing: border-box;
     color: #36395A;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     font-family: "JetBrains Mono",monospace;
     height: 48px;
     justify-content: center;
     line-height: 1;
     list-style: none;
     overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
     position: relative;
     text-align: left;
     text-decoration: none;
@@ -68,4 +88,78 @@ body {
 .button-30:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+.button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-54:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+}
+
+@media (max-width: 700px) {
+    .button-54 {
+        padding: 0.25em 0.75em;
+    }
+    .top div {
+        display: block;
+    }
+
+    .top div form {
+        padding: 5px 0px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin: 0 auto;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    table tr:first-child {
+        display: none;
+    }
+
+    td {
+        display: block;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        margin: auto;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+    }
+
+    table td form {
+        align-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }
