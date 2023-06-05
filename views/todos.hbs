@@ -5,13 +5,13 @@
             <label>Title <input name="todoTitle" value="{{todo.todoTitle}}" required></label>
         </div>
         <div class="new-todo-component">
-            <textarea name="description" rows="5" cols="50" placeholder="description">{{todo.description}}</textarea>
+            <textarea name="description" rows="5" cols="50" placeholder="description" required>{{todo.description}}</textarea>
         </div>
         <div class="new-todo-component">
-            <label>Importance <input name="importance" type="number" min="1" max="5" value="{{todo.importance}}"></label>
+            <label>Importance <input name="importance" type="number" min="1" max="5" value="{{todo.importance}} required"></label>
         </div>
         <div class="new-todo-component">
-            <label>Due Date <input name="dueDate" type="date" value="{{todo.dueDate}}"></label>
+            <label>Due Date <input name="dueDate" type="date" value="{{todo.dueDate}}" required></label>
         </div>
         <div class="new-todo-component">
             <label> Completed<input name="completed" type="checkbox" value="true" {{#if todo.completed}}checked{{/if}}></label>
