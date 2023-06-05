@@ -1,13 +1,25 @@
 <section class="new-todo">
     <form action="/{{action}}" method="post">
         <input type="hidden" name="id" value="{{todo._id}}">
-        <label>Title <input name="todoTitle" value="{{todo.todoTitle}}" required></label>
-        <label>Importance <input name="importance" type="number" min="1" max="5" value="{{todo.importance}}"></label>
-        <label>Due Date <input name="dueDate" type="date" value="{{todo.dueDate}}"></label>
-        <label> Completed<input name="completed" type="checkbox" value="true" {{#if todo.completed}}checked{{/if}}></label>
-        <textarea name="description" rows="5" cols="50">{{todo.description}}</textarea>
-        <input type="submit" value="Create a Todo" formaction="/createTodo">
-        <input name="submitOverview" type="submit" value="Submit and Return" formaction="/todoOverview">
+        <div class="todo-text new-todo-component">
+            <label>Title <input name="todoTitle" value="{{todo.todoTitle}}" required></label>
+            <textarea name="description" rows="5" cols="50" placeholder="description">{{todo.description}}</textarea>
+        </div>
+        <div class="new-todo-component">
+            <label>Importance <input name="importance" type="number" min="1" max="5" value="{{todo.importance}}"></label>
+        </div>
+        <div class="new-todo-component">
+            <label>Due Date <input name="dueDate" type="date" value="{{todo.dueDate}}"></label>
+        </div>
+        <div class="new-todo-component">
+            <label> Completed<input name="completed" type="checkbox" value="true" {{#if todo.completed}}checked{{/if}}></label>
+        </div>
+        <div class="new-todo-component">
+            <input class="button-54" type="submit" value="Create a Todo" formaction="/createTodo">
+        </div>
+        <div class="new-todo-component">
+            <input class="button-54" name="submitOverview" type="submit" value="Submit and Return" formaction="/todoOverview">
+        </div>
     </form>
-    <a href="/"><button>Overview</button></a>
+    <a href="/"><button id="overview" class="button-54">Cancel</button></a>
 </section>

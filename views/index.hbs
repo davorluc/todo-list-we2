@@ -73,11 +73,19 @@
         <article>
             <h2>{{this.todoTitle}}</h2>
             <div class="content">
-                <p>Due Date: {{this.dueDate}}</p>
-                <p>Importance: {{this.importance}}</p>
                 <p><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></p>
-                <p id="description">{{this.description}}</p>
-                <p><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Edit"></form></p>
+                <div class="date">
+                    <p>Due Date:</p>
+                    <p>{{this.dueDate}}</p>
+                </div>
+                <div class="importance">
+                    <p>Importance:</p>
+                    <p>{{this.importance}}</p>
+                </div>
+                <div class="description">
+                    <p class="description">{{this.description}}</p>
+                </div>
+                <p class="edit-button"><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Edit"></form></p>
             </div>
         </article>
     {{/each}}

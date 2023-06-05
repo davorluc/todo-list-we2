@@ -4,6 +4,7 @@ body {
     align-content: center;
     align-items: center;
     text-align: center;
+    font-family: "JetBrains Mono", monospace;
 }
 
 .top {
@@ -20,13 +21,12 @@ body {
 }
 
 article {
-    font-family: "JetBrains Mono", monospace;
     width: 25%;
     border: 1px solid var(--body-color);
     border-radius: 10px;
     display: inline-flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 100px;
     margin: 20px;
 }
 
@@ -34,12 +34,38 @@ article {
     display: flex;
 }
 
-#description {
+.description {
     padding: 7px;
 }
 
-.new-todo a {
-    padding: 15px;
+.edit-button {
+    margin-left: auto;
+}
+
+.new-todo {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-todo-component {
+    margin: 10px;
+}
+
+.new-todo form {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-text {
+    display: flex;
+}
+
+#overview {
+    margin: 15px;
 }
 
 .button-30 {
@@ -110,7 +136,9 @@ article {
 
 @media (max-width: 700px) {
     article {
-        width: 90%;
+        width: 100%;
+        padding: 0;
+        margin: 20px 0;
     }
 
     .button-54 {
