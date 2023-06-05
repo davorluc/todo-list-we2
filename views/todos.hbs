@@ -1,11 +1,11 @@
-<form action="/{{action}}todo" method="post">
+<form action="/{{action}}" method="post">
     <input type="hidden" name="id" value="{{todo._id}}">
     <label>Title <input name="todoTitle" value="{{todo.todoTitle}}" required></label>
     <label>Importance <input name="importance" type="number" min="1" max="5" value="{{todo.importance}}"></label>
     <label>Due Date <input name="dueDate" type="date" value="{{todo.dueDate}}"></label>
     <label> Completed<input name="completed" type="checkbox" value="true" {{#if todo.completed}}checked{{/if}}></label>
-    <textarea name="description" rows="5" cols="50" value="{{todo.description}}"></textarea>
-    <input type="submit" value="Create a Todo">
-    <input name="submitOverview" type="submit" value="Submit and Return" formaction="/{{action}}todoOverview">
-    <a href="/"><button>Overview</button></a>
+    <textarea name="description" rows="5" cols="50">{{todo.description}}</textarea>
+    <input type="submit" name="action" value="Create a Todo" formaction="/createTodo">
+    <input name="submitOverview" name="action" type="submit" value="Submit and Return" formaction="/todoOverview">
+    <button><a href="/">Overview</a></button>
 </form>

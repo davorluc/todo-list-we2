@@ -6,30 +6,43 @@ export class TodoController {
         res.render('todos', {action: '', result:{styleToggle: req.userSettings.styleToggle}})
     };
 
-    showTodo = async (req:any, res:Response) => {
-        let todo = await todoService.get(req.params.id);
-        res.render('todos', { todo: todo, action: '', result: { styleToggle: req.UserSettings.styleToggle } });
+    showTodo = (req:any, res:Response) => {
+        todoService.get(req.params.id, function (err:any, todo:any) {
+            if (err) {
+                console.log('err');
+            } if (todo == null) {
+                console.log('task is null');
+            } else {
+                res.render('todos', { todo: todo, action: '', result: { styleToggle: req.UserSettings?.styleToggle } });
+            }
+
+        });
+
     }
 
-    createTodo = async(req:Request, res:Response) => {
-        const newTodo = await todoService.add(
+    createTodo = (req:Request, res:Response) => {
+        todoService.add(
             req.body.todoTitle,
             req.body.dueDate,
             req.body.importance,
             req.body.description,
-            Boolean(req.body.completed))
-        req.url === '/todoOverview' ? res.redirect('/') : res.redirect(`/todo/${newTodo._id}/`);
+            Boolean(req.body.completed),
+            function(err: any, todo: any) {
+                req.url === '/todoOverview' ? res.redirect('/') : res.redirect('/todo/' + todo._id);
+            });
     }
 
-    updateTodo = async(req:Request, res:Response) => {
-        const updateTodo = await todoService.update(
+    updateTodo = (req:Request, res:Response) => {
+        todoService.update(
             req.body.id,
             req.body.todoTitle,
             req.body.dueDate,
             req.body.importance,
             req.body.description,
-            req.body.completed)
-        req.url === '/updateOverview' ? res.redirect('/') : res.redirect(`/todo/${req.body._id}`);
+            req.body.completed,
+        function(err: any, todo: any) {
+            req.url === '/updateOverview' ? res.redirect('/') : res.redirect(`/todo/${req.body._id}`);
+        })
     }
 }
 

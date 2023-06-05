@@ -1,4 +1,4 @@
-import Datastore from 'nedb-promises';
+import Datastore from '@seald-io/nedb';
 // @ts-ignore
 const db = new Datastore({filename: './data/todos.db', autoload: true});
 
@@ -17,46 +17,42 @@ class TodoService {
     constructor() {
     }
 
-    async add(
+    add(
         todoTitle: string,
         dueDate: string,
         importance: number,
         description: string,
-        completed: Boolean
+        completed: Boolean,
+        callback: (err: any, todo: any) => void
 
     ) {
         const newEntry = new Entry(todoTitle, dueDate, importance, description, completed);
-        return db.insert(newEntry)
+        return db.insert(newEntry, callback)
     }
 
-    async update(
+    update(
         id: string,
         todoTitle: string,
         dueDate: string,
         importance: number,
         description: string,
-        completed: Boolean
+        completed: Boolean,
+        callback: (err: any, todo: any) => void
     ) {
         const updateEntry = new Entry(todoTitle, dueDate, importance, description, completed);
-        return db.update({_id: id}, {$set: updateEntry});
-    }
-    
-    async get(id: string): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
-            db.findOne({ _id: id }, (error: Error | null, result: any) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(JSON.stringify(result));
-                }
-            });
-        });
+        return db.update({_id: id}, {$set: updateEntry}, {}, callback);
     }
 
-    async all(
+    get(id: string, callback: (err: any, todo: any) => void) {
+        db.findOne({_id: id}, callback);
+    }
+
+
+    all(
         orderBy: string,
         orderDirection: number,
-        showCompleted: Boolean
+        showCompleted: Boolean,
+        // callback: (err: any, todo: any) => void
     ) {
         const query = showCompleted ? {} : {completed: false};
         return db.find(query).sort({[orderBy]: orderDirection});
