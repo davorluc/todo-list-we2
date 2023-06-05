@@ -6,30 +6,6 @@ body {
     text-align: center;
 }
 
-table {
-    border-collapse: collapse;
-    font-family: Tahoma, Geneva, sans-serif;
-    margin-right: auto;
-    margin-left: auto;
-}
-table td {
-    padding: 15px;
-}
-table th {
-    background-color: #54585d;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 13px;
-    border: 1px solid #54585d;
-}
-table tr td {
-    color: #636363;
-    border: 1px solid #dddfe1;
-}
-table tr {
-    background-color: #f9fafb;
-}
-
 .top {
     padding: 15px;
 }
@@ -41,6 +17,25 @@ table tr {
 
 .top div form {
     padding: 0px 5px
+}
+
+article {
+    font-family: "JetBrains Mono", monospace;
+    width: 25%;
+    border: 1px solid var(--body-color);
+    border-radius: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+}
+
+.content {
+    display: flex;
+}
+
+#description {
+    padding: 7px;
 }
 
 .new-todo a {
@@ -114,6 +109,10 @@ table tr {
 }
 
 @media (max-width: 700px) {
+    article {
+        width: 90%;
+    }
+
     .button-54 {
         padding: 0.25em 0.75em;
     }
@@ -123,43 +122,5 @@ table tr {
 
     .top div form {
         padding: 5px 0px;
-    }
-
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-        margin: 0 auto;
-        align-items: center;
-        align-content: center;
-        text-align: center;
-        justify-content: center;
-    }
-
-    table tr:first-child {
-        display: none;
-    }
-
-    td {
-        display: block;
-        border: none;
-        position: relative;
-        padding-left: 50%;
-        margin: auto;
-    }
-
-    td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 6px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-weight: bold;
-    }
-
-    table td form {
-        align-content: center;
-        align-items: center;
-        text-align: center;
     }
 }

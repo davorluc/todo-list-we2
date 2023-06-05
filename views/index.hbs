@@ -36,7 +36,7 @@
     </div>
 </section>
 
-
+<!--
 <table>
     <tr>
         <th>Title</th>
@@ -67,3 +67,21 @@
         </tr>
     {{/unless}}
 </table>
+-->
+<section class="cards">
+    {{#each result.todoList}}
+        <article>
+            <h2>{{this.todoTitle}}</h2>
+            <div class="content">
+                <p>Due Date: {{this.dueDate}}</p>
+                <p>Importance: {{this.importance}}</p>
+                <p><input name="completed" type="checkbox" value="true" aria-label="finished checkbox" {{#if this.completed}}checked{{/if}} disabled></p>
+                <p id="description">{{this.description}}</p>
+                <p><form action="/todo/{{this._id}}" method="get"><input class="button-30" type="submit" value="Edit"></form></p>
+            </div>
+        </article>
+    {{/each}}
+    {{#unless result.todoList}}
+        <p>Keine Einträge gefunden</p>
+    {{/unless}}
+</section>
