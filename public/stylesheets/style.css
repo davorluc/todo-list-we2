@@ -151,4 +151,8 @@ article {
     .top div form {
         padding: 5px 0px;
     }
+
+    textarea {
+        max-width: 75vw;
+    }
 }
